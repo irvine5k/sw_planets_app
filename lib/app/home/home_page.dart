@@ -115,26 +115,23 @@ class _HomePageState extends State<HomePage> {
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             children: <Widget>[
-                              Container(
-                                color: Colors.red,
-                                width: 50,
-                                height: 90,
+                              CardPlanet(
+                                title: "Moon",
+                                description: "2-5 Days",
                               ),
                               SizedBox(
                                 width: 10,
                               ),
-                              Container(
-                                color: Colors.red,
-                                width: 50,
-                                height: 90,
+                              CardPlanet(
+                                title: "Moon",
+                                description: "2-5 Days",
                               ),
                               SizedBox(
                                 width: 10,
                               ),
-                              Container(
-                                color: Colors.red,
-                                width: 50,
-                                height: 90,
+                              CardPlanet(
+                                title: "Moon",
+                                description: "2-5 Days",
                               ),
                             ],
                           ),
@@ -146,6 +143,59 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class CardPlanet extends StatelessWidget {
+  const CardPlanet({
+    Key key,
+    @required this.title,
+    @required this.description,
+  }) : super(key: key);
+
+  final String title;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.4,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadiusDirectional.circular(10),
+        color: Colors.grey,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image.asset(
+            "assets/images/planet.png",
+            height: 120,
+            width: 120,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: 10),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                description,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -20,4 +20,22 @@ class HomeService {
 
     return ResultModel(_nextUrl, planets);
   }
+
+  Future<ResultModel> getPlanetsByQuery(String query, {String nextUrl}) async {
+    final baseUrl = nextUrl != null
+        ? nextUrl
+        : 'https://swapi.co/api/planets/?search=$query';
+
+    final response = await _client.get(baseUrl);
+
+    final _nextUrl = response.data['next'];
+
+    final planets = List<PlanetModel>.from(
+      response.data['results'].map(
+        (planet) => PlanetModel.fromJson(planet),
+      ),
+    );
+
+    return ResultModel(_nextUrl, planets);
+  }
 }

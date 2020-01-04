@@ -18,5 +18,16 @@ abstract class _HomeStore with Store {
   ResultModel data;
 
   @action
-  Future<void> getData() async => data = await service.getPlanets();
+  Future<void> getData({String nextUrl}) async =>
+      data = await service.getPlanets(nextUrl: nextUrl);
+
+  @action
+  Future<void> getDataByQuery(
+    String query, {
+    String nextUrl,
+  }) async =>
+      data = await service.getPlanetsByQuery(
+        query,
+        nextUrl: nextUrl,
+      );
 }

@@ -29,7 +29,15 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$getDataAsyncAction = AsyncAction('getData');
 
   @override
-  Future<void> getData() {
-    return _$getDataAsyncAction.run(() => super.getData());
+  Future<void> getData({String nextUrl}) {
+    return _$getDataAsyncAction.run(() => super.getData(nextUrl: nextUrl));
+  }
+
+  final _$getDataByQueryAsyncAction = AsyncAction('getDataByQuery');
+
+  @override
+  Future<void> getDataByQuery(String query, {String nextUrl}) {
+    return _$getDataByQueryAsyncAction
+        .run(() => super.getDataByQuery(query, nextUrl: nextUrl));
   }
 }

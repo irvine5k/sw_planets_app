@@ -9,6 +9,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        elevation: 1,
+        backgroundColor: Colors.transparent,
+        label: Text('VER TODOS'),
+        icon: Icon(Icons.add),
+        onPressed: () {},
+      ),
       body: Stack(
         children: <Widget>[
           Image.asset(
@@ -17,97 +24,106 @@ class _HomePageState extends State<HomePage> {
             width: MediaQuery.of(context).size.width,
           ),
           Container(
-            margin: EdgeInsets.only(left: 30, top: 50),
+            padding: EdgeInsets.symmetric(horizontal: 30),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  "Planets",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                  ),
-                ),
-                SizedBox(height: 40),
-                Text(
-                  "FRASE DE EFEITO",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Row(
-                  children: <Widget>[
-                    Stack(
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    margin: EdgeInsets.only(top: 50),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
+                        Center(
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Column(
+                              children: [
+                                Text(
+                                  'STAR',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  'PLANETS',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 8,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  'WARS',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        Icon(
-                          Icons.add_circle,
-                          color: Colors.white,
-                          size: 50,
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12.0),
-                      child: Text(
-                        "Ver todos",
-                        style: TextStyle(
-                          color: Colors.grey[200],
-                          fontSize: 14,
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.15),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            "PLANETAS DESTAQUE",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text(
-                  "Planetas Destaque",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  "dasdas",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                Container(
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      Container(
-                        color: Colors.red,
-                        width: 50,
-                        height: 90,
-                      ),
-                      Container(
-                        color: Colors.red,
-                        width: 50,
-                        height: 90,
-                      ),
-                      Container(
-                        color: Colors.red,
-                        width: 50,
-                        height: 90,
-                      ),
-                    ],
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                        ),
+                        Expanded(
+                          child: ListView(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            children: <Widget>[
+                              Container(
+                                color: Colors.red,
+                                width: 50,
+                                height: 90,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                color: Colors.red,
+                                width: 50,
+                                height: 90,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                color: Colors.red,
+                                width: 50,
+                                height: 90,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

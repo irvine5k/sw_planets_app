@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                         FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
-                            "PLANETAS DESTAQUE",
+                            "HIGHLIGHTED PLANETS",
                             style: TextStyle(
                               color: Colors.white,
                             ),

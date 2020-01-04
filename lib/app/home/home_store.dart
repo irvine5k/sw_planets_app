@@ -25,21 +25,21 @@ abstract class _HomeStore with Store {
 
   @action
   Future<void> getData({String nextUrl}) async {
-    isLoading = true;
-
     data = await service.getPlanets(nextUrl: nextUrl);
-
-    isLoading = false;
   }
 
   @action
   Future<void> nextPageData() async {
     if (data.nextUrl != null) {
+      isLoading = true;
+
       final result = await service.getPlanets(nextUrl: data.nextUrl);
 
       final newPlanets = data.planets..addAll(result.planets);
 
       data = ResultModel(result.nextUrl, newPlanets);
+
+      isLoading = false;
     } else {
       return;
     }
@@ -50,13 +50,9 @@ abstract class _HomeStore with Store {
     String query, {
     String nextUrl,
   }) async {
-    isLoading = true;
-
     data = await service.getPlanetsByQuery(
       query,
       nextUrl: nextUrl,
     );
-
-    isLoading = false;
   }
 }

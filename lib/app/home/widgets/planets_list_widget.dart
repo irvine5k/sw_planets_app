@@ -11,6 +11,20 @@ class PlanetsListWidget extends StatefulWidget {
 }
 
 class _PlanetsListWidgetState extends State<PlanetsListWidget> {
+  ScrollController _controller;
+
+  @override
+  void initState() {
+    _controller = ScrollController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<HomeStore>(context);
@@ -31,7 +45,7 @@ class _PlanetsListWidgetState extends State<PlanetsListWidget> {
       backgroundColor: Colors.grey[900],
       body: Observer(
         builder: (context) {
-          if (store.isLoading || store.data == null) {
+          if (store.data == null) {
             return Center(
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -39,34 +53,57 @@ class _PlanetsListWidgetState extends State<PlanetsListWidget> {
             );
           } else {
             return ListView.builder(
+              controller: _controller
+                ..addListener(
+                  () {
+                    if (_controller.offset ==
+                        _controller.position.maxScrollExtent) {
+                      store.nextPageData();
+                    }
+                  },
+                ),
               shrinkWrap: true,
               itemCount: store.data?.planets?.length ?? 0,
               itemBuilder: (context, index) {
-                return Card(
-                  color: Colors.grey[700],
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 10,
-                  ),
-                  child: ListTile(
-                    leading: Image.asset('assets/images/planet.png'),
-                    title: Text(
-                      Provider.of<HomeStore>(context).data.planets[index].name,
-                      style: TextStyle(
-                        fontSize: 8,
-                        color: Colors.white,
+                if (index == store.data.planets.length) {
+                  return Center(
+                    child: Opacity(
+                      opacity: store.isLoading ? 1.0 : 0.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
                     ),
-                    trailing: IconButton(
-                      icon: Icon(
-                        Icons.keyboard_arrow_right,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      onPressed: () {},
+                  );
+                } else {
+                  return Card(
+                    color: Colors.grey[700],
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
                     ),
-                  ),
-                );
+                    child: ListTile(
+                      leading: Image.asset('assets/images/planet.png'),
+                      title: Text(
+                        Provider.of<HomeStore>(context)
+                            .data
+                            .planets[index]
+                            .name,
+                        style: TextStyle(
+                          fontSize: 8,
+                          color: Colors.white,
+                        ),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ),
+                  );
+                }
               },
             );
           }

@@ -23,6 +23,37 @@ class _PlanetsListWidgetState extends State<PlanetsListWidget> {
         ),
       ),
       backgroundColor: Colors.grey[900],
+      body: ListView.builder(
+        shrinkWrap: true,
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Card(
+            color: Colors.grey[700],
+            margin: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            child: ListTile(
+              leading: Image.asset('assets/images/planet.png'),
+              title: Text(
+                'Planeta Vinicius',
+                style: TextStyle(
+                  fontSize: 8,
+                  color: Colors.white,
+                ),
+              ),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                onPressed: () {},
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -12,7 +12,7 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: <Widget>[
           Image.asset(
-            "assets/moon.jpg",
+            "assets/images/moon.jpg",
             fit: BoxFit.fill,
             width: MediaQuery.of(context).size.width,
           ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sw_planets_app/app/home/widgets/planets_list_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,11 +12,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        elevation: 1,
+        elevation: 0.5,
         backgroundColor: Colors.transparent,
-        label: Text('VER TODOS'),
+        label: Text(
+          'VER TODOS',
+          style: GoogleFonts.pressStart2P(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+            ),
+          ),
+        ),
         icon: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PlanetsListWidget(),
+            ),
+          );
+        },
       ),
       body: Stack(
         children: <Widget>[

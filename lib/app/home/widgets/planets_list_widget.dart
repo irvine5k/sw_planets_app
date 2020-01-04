@@ -76,7 +76,7 @@ class _PlanetsListWidgetState extends State<PlanetsListWidget> {
                   );
                 } else {
                   return Card(
-                    color: Colors.grey[700],
+                    color: Colors.grey[900].withOpacity(0.3),
                     margin: EdgeInsets.symmetric(
                       horizontal: 20,
                       vertical: 10,

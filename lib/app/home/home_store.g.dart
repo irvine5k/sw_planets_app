@@ -26,6 +26,23 @@ mixin _$HomeStore on _HomeStore, Store {
     }, _$dataAtom, name: '${_$dataAtom.name}_set');
   }
 
+  final _$isLoadingAtom = Atom(name: '_HomeStore.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.context.enforceReadPolicy(_$isLoadingAtom);
+    _$isLoadingAtom.reportObserved();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.context.conditionallyRunInAction(() {
+      super.isLoading = value;
+      _$isLoadingAtom.reportChanged();
+    }, _$isLoadingAtom, name: '${_$isLoadingAtom.name}_set');
+  }
+
   final _$getDataAsyncAction = AsyncAction('getData');
 
   @override

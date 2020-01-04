@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:sw_planets_app/app/home/widgets/planets_list_widget.dart';
+
+import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,6 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         elevation: 0.5,

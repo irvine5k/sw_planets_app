@@ -7,6 +7,25 @@ class PlanetDetailWidget extends StatelessWidget {
 
   const PlanetDetailWidget({Key key, @required this.planet}) : super(key: key);
 
+  String format(String value) {
+    String newValue = value;
+    int cont = 0;
+
+    try {
+      int.parse(value);
+      for (var i = value.length - 1; i > 0; i--) {
+        cont++;
+        if (cont % 3 == 0) {
+          newValue = newValue.replaceRange(i, i, ".");
+        } else {}
+      }
+    } catch (e) {
+      return value;
+    }
+
+    return newValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +64,7 @@ class PlanetDetailWidget extends StatelessWidget {
           ),
           TextPlanetDetailWidget(
             title: "Population",
-            description: planet.population,
+            description: format(planet.population),
           ),
         ],
       ),

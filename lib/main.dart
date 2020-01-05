@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Star Wars Planets',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Colors.white,
+          primaryIconTheme: IconThemeData(color: Colors.white),
           textTheme: GoogleFonts.pressStart2PTextTheme(
             Theme.of(context).textTheme,
           ),

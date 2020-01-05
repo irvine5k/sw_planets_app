@@ -66,7 +66,7 @@ class _PlanetsListWidgetState extends State<PlanetsListWidget> {
               shrinkWrap: true,
               itemCount: store.data?.planets?.length ?? 0,
               itemBuilder: (context, index) {
-                if (index == store.data.planets.length) {
+                if (index == store.data.planets.length - 1) {
                   return Column(
                     children: <Widget>[
                       Card(

@@ -67,13 +67,58 @@ class _PlanetsListWidgetState extends State<PlanetsListWidget> {
               itemCount: store.data?.planets?.length ?? 0,
               itemBuilder: (context, index) {
                 if (index == store.data.planets.length) {
-                  return Center(
-                    child: Opacity(
-                      opacity: store.isLoading ? 1.0 : 0.0,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  return Column(
+                    children: <Widget>[
+                      Card(
+                        color: Colors.grey[900].withOpacity(0.3),
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 8,
+                        ),
+                        child: ListTile(
+                          contentPadding: EdgeInsets.all(12),
+                          leading: Image.asset('assets/images/planet.png'),
+                          title: Text(
+                            Provider.of<HomeStore>(context)
+                                .data
+                                .planets[index]
+                                .name,
+                            style: TextStyle(
+                              fontSize: 8,
+                              color: Colors.white,
+                            ),
+                          ),
+                          trailing: IconButton(
+                            icon: Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PlanetDetailWidget(
+                                    planet: store.data.planets[index],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 20),
+                      Center(
+                        child: Opacity(
+                          opacity: store.isLoading ? 0.0 : 1.0,
+                          child: CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                    ],
                   );
                 } else {
                   return Card(

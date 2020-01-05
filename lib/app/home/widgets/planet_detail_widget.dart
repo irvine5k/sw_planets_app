@@ -42,31 +42,34 @@ class PlanetDetailWidget extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.grey[900],
-      body: ListView(
-        children: <Widget>[
-          SizedBox(height: 70),
-          Image.asset(
-            "assets/images/planet.png",
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.width * 0.4,
-          ),
-          TextPlanetDetailWidget(
-            title: "Rotation Period",
-            description: planet.rotationPeriod + " Days",
-          ),
-          TextPlanetDetailWidget(
-            title: "Orbital Period",
-            description: planet.orbitalPeriod + " Days",
-          ),
-          TextPlanetDetailWidget(
-            title: "Terrain",
-            description: planet.terrain,
-          ),
-          TextPlanetDetailWidget(
-            title: "Population",
-            description: format(planet.population),
-          ),
-        ],
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: ListView(
+          children: <Widget>[
+            SizedBox(height: 70),
+            Image.asset(
+              "assets/images/planet.png",
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.width * 0.4,
+            ),
+            TextPlanetDetailWidget(
+              title: "Rotation Period",
+              description: planet.rotationPeriod + " Days",
+            ),
+            TextPlanetDetailWidget(
+              title: "Orbital Period",
+              description: planet.orbitalPeriod + " Days",
+            ),
+            TextPlanetDetailWidget(
+              title: "Terrain",
+              description: planet.terrain,
+            ),
+            TextPlanetDetailWidget(
+              title: "Population",
+              description: format(planet.population),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -128,10 +128,7 @@ class _HomePageState extends State<HomePage> {
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) =>
                                       PlanetCardWidget(
-                                    title: store.data.planets[index].name,
-                                    description: store
-                                        .data.planets[index].residents.length
-                                        .toString(),
+                                    planet: store.data.planets[index],
                                   ),
                                 ),
                               );

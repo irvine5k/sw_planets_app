@@ -10,6 +10,8 @@ class HomeService {
 
     final response = await _client.get(baseUrl);
 
+    final count = response.data['count'];
+
     final _nextUrl = response.data['next'];
 
     final planets = List<PlanetModel>.from(
@@ -18,7 +20,12 @@ class HomeService {
       ),
     );
 
-    return ResultModel(_nextUrl, planets);
+    return ResultModel(
+      count: count,
+      nextUrl: _nextUrl,
+      planets: planets,
+      searchedPlanets: [],
+    );
   }
 
   Future<ResultModel> getPlanetsByQuery(String query, {String nextUrl}) async {
@@ -28,6 +35,8 @@ class HomeService {
 
     final response = await _client.get(baseUrl);
 
+    final count = response.data['count'];
+
     final _nextUrl = response.data['next'];
 
     final planets = List<PlanetModel>.from(
@@ -36,6 +45,11 @@ class HomeService {
       ),
     );
 
-    return ResultModel(_nextUrl, planets);
+    return ResultModel(
+      count: count,
+      nextUrl: _nextUrl,
+      planets: [],
+      searchedPlanets: planets,
+    );
   }
 }

@@ -18,7 +18,13 @@ abstract class _HomeStore with Store {
   ResultModel data;
 
   @observable
+  String query;
+
+  @observable
   bool isLoading = false;
+
+  @action
+  void setQuery(String newQuery) => query = newQuery;
 
   @action
   Future<void> getData({String nextUrl}) async {
@@ -27,6 +33,8 @@ abstract class _HomeStore with Store {
 
   @action
   Future<void> nextPageData() async {
+    if(data.count < data.planets.length) return;
+
     if (data.nextUrl != null) {
       isLoading = true;
 
@@ -34,7 +42,10 @@ abstract class _HomeStore with Store {
 
       final newPlanets = data.planets..addAll(result.planets);
 
-      data = ResultModel(result.nextUrl, newPlanets);
+      data = data.copyWith(
+        nextUrl: result.nextUrl,
+        planets: newPlanets,
+      );
 
       isLoading = false;
     } else {
@@ -44,12 +55,49 @@ abstract class _HomeStore with Store {
 
   @action
   Future<void> getDataByQuery(
-    String query, {
+    String newQuery, {
     String nextUrl,
   }) async {
-    data = await service.getPlanetsByQuery(
+    query = newQuery;
+
+    isLoading = true;
+
+    final result = await service.getPlanetsByQuery(
       query,
       nextUrl: nextUrl,
     );
+
+    data = data.copyWith(
+      searchedPlanets: result.searchedPlanets,
+    );
+
+    print(data.searchedPlanets.first.name);
+
+    isLoading = false;
+  }
+
+  @action
+  Future<void> nextPageDataByQuery() async {
+    if(data.count < data.searchedPlanets.length) return;
+
+    if (data.nextUrl != null) {
+      isLoading = true;
+
+      final result = await service.getPlanetsByQuery(
+        query,
+        nextUrl: data.nextUrl,
+      );
+
+      final newPlanets = data.searchedPlanets..addAll(result.searchedPlanets);
+
+      data = data.copyWith(
+        nextUrl: result.nextUrl,
+        searchedPlanets: newPlanets,
+      );
+
+      isLoading = false;
+    } else {
+      return;
+    }
   }
 }

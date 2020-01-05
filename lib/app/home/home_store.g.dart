@@ -26,6 +26,23 @@ mixin _$HomeStore on _HomeStore, Store {
     }, _$dataAtom, name: '${_$dataAtom.name}_set');
   }
 
+  final _$queryAtom = Atom(name: '_HomeStore.query');
+
+  @override
+  String get query {
+    _$queryAtom.context.enforceReadPolicy(_$queryAtom);
+    _$queryAtom.reportObserved();
+    return super.query;
+  }
+
+  @override
+  set query(String value) {
+    _$queryAtom.context.conditionallyRunInAction(() {
+      super.query = value;
+      _$queryAtom.reportChanged();
+    }, _$queryAtom, name: '${_$queryAtom.name}_set');
+  }
+
   final _$isLoadingAtom = Atom(name: '_HomeStore.isLoading');
 
   @override
@@ -50,11 +67,38 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$getDataAsyncAction.run(() => super.getData(nextUrl: nextUrl));
   }
 
+  final _$nextPageDataAsyncAction = AsyncAction('nextPageData');
+
+  @override
+  Future<void> nextPageData() {
+    return _$nextPageDataAsyncAction.run(() => super.nextPageData());
+  }
+
   final _$getDataByQueryAsyncAction = AsyncAction('getDataByQuery');
 
   @override
-  Future<void> getDataByQuery(String query, {String nextUrl}) {
+  Future<void> getDataByQuery(String newQuery, {String nextUrl}) {
     return _$getDataByQueryAsyncAction
-        .run(() => super.getDataByQuery(query, nextUrl: nextUrl));
+        .run(() => super.getDataByQuery(newQuery, nextUrl: nextUrl));
+  }
+
+  final _$nextPageDataByQueryAsyncAction = AsyncAction('nextPageDataByQuery');
+
+  @override
+  Future<void> nextPageDataByQuery() {
+    return _$nextPageDataByQueryAsyncAction
+        .run(() => super.nextPageDataByQuery());
+  }
+
+  final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
+
+  @override
+  void setQuery(String newQuery) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction();
+    try {
+      return super.setQuery(newQuery);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
   }
 }

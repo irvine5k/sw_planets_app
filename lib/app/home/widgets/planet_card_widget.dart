@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sw_planets_app/app/home/models/planet_model.dart';
 import 'package:sw_planets_app/app/home/widgets/planet_detail_widget.dart';
+import 'package:sw_planets_app/app/shared/sw_colors.dart';
 
 class PlanetCardWidget extends StatelessWidget {
   const PlanetCardWidget({Key key, @required this.planet}) : super(key: key);
@@ -26,7 +27,7 @@ class PlanetCardWidget extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.4,
         decoration: BoxDecoration(
           borderRadius: BorderRadiusDirectional.circular(10),
-          color: Colors.grey[900].withOpacity(0.7),
+          color: SwColors().grey50,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

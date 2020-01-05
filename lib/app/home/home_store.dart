@@ -1,9 +1,6 @@
 import 'package:mobx/mobx.dart';
-
 import 'package:sw_planets_app/app/home/home_service.dart';
 
-import 'models/planet_model.dart';
-import 'models/result_model.dart';
 import 'models/result_model.dart';
 
 part 'home_store.g.dart';

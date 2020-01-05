@@ -79,9 +79,10 @@ class _PlanetsListWidgetState extends State<PlanetsListWidget> {
                     color: Colors.grey[900].withOpacity(0.3),
                     margin: EdgeInsets.symmetric(
                       horizontal: 20,
-                      vertical: 10,
+                      vertical: 8,
                     ),
                     child: ListTile(
+                      contentPadding: EdgeInsets.all(12),
                       leading: Image.asset('assets/images/planet.png'),
                       title: Text(
                         Provider.of<HomeStore>(context)

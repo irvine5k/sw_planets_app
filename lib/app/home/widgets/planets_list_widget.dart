@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../home_store.dart';
+import 'planet_detail_widget.dart';
 
 class PlanetsListWidget extends StatefulWidget {
   @override
@@ -100,7 +101,16 @@ class _PlanetsListWidgetState extends State<PlanetsListWidget> {
                           color: Colors.white,
                           size: 30,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PlanetDetailWidget(
+                                planet: store.data.planets[index],
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   );

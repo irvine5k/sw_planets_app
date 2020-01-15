@@ -1,7 +1,5 @@
 # Star Wars Planets App
 
-A Flutter project for Vizir developer test.
-
 ## Screenshots
 - [Home Page](screenshot1.jpeg)
 - [Planet List Page](screenshot2.jpeg)
